@@ -9,11 +9,17 @@ function inputLength() {
 	return input.value.length;
 }
 
-function createListElement() {								// creates a new element and assigns it to variable li  
-	var li = document.createElement("li");					
-	li.appendChild(document.createTextNode(input.value));	//and assigns the textNode to the input.value and appends it to the li 
-	ul.appendChild(li);										//and then it appends the li item to the end of the un-ordered list
-	input.value = "";										//then resets the input field to empy
+function createListElement() {								
+	var li = document.createElement("li");
+	li.setAttribute("class", "done done2");					
+	li.appendChild(document.createTextNode(input.value));	
+	li.onclick = toggleListItem;
+	ul.appendChild(li);										
+	var delButton = document.createElement("button");
+	delButton.innerHTML = "Delete";
+	delButton.onclick = deleteItem;
+	li.appendChild(delButton);
+	input.value = "";										
 }
 
 function addListAfterClick() {								//adds item to the list if add to list button is clicked
@@ -49,3 +55,4 @@ for (var i = 0; i < doneItems.length; i++) {                //done item(for the 
 for (var i = 0; i < deleteButtons.length; i++) {      		 //delete button listener event
 	deleteButtons[i].addEventListener("click", deleteItem);
 };
+
